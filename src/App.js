@@ -1,14 +1,20 @@
-import { Component } from "react";
-import Title from './Title'
-import Content from './Content'
-
-export default class App extends Component {
-	render() {
-		return (
-			<div>
-				<Title text="Todo List" />
-				<Content />
-			</div>
-		);
-	}
-}
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+  } from "react-router-dom";
+ 
+  import Content from './Content';
+  
+  
+  function App() {
+	return (
+	  <Router basename={process.env.PUBLIC_URL}>
+		<Routes>
+		  <Route path="/" element={<Content />} />
+		</Routes>
+	  </Router>
+	);
+  }
+  
+  export default App;

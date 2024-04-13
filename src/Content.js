@@ -23,17 +23,19 @@ export default class Content extends Component {
     addItem() {
         const inputText = document.querySelector('#inputText');
         if (inputText.value) {
-            const tempArr = [...this.state.items];
-            tempArr.push(<TodoListItem
-                id={this.state.itemNum++}
+            const newItem = <TodoListItem
+                id={this.state.itemNum}
                 text={inputText.value}
-                delete={(num)=>{this.deleteItem(num)}} />);
-            this.setState({
-                items: tempArr
-            })
-            inputText.value=""
+                delete={(num)=>{this.deleteItem(num)}} />;
+            this.setState(prevState => ({
+                itemNum: prevState.itemNum + 1,
+                items: [...prevState.items, newItem]
+            }), () => {
+                inputText.value = "";
+            });
         }
     }
+    
  
     render() {
         return (
